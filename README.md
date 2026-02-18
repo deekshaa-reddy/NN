@@ -40,3 +40,72 @@ b stands for bias.
 x represents the input.
 y represents the ground truth label.
 p represents the probability vector of the predicted output for the classification problem 
+
+## Feedforward Neural Network
+To summarise, the steps involved in computing the output of the Equation neuron in layer Equation is as follows:
+Multiply each row of the weight matrix with the output from the previous layer to obtain the weighted sum of inputs from the previous layer.
+Convert the weighted sum into the cumulative input by adding the bias vector.
+Apply the activation function Equation to the cumulative input to obtain the output vector Equation. 
+The pseudocode for a feedforward pass is given below:
+
+We initialise the variable Equation as the input: Equation
+We loop through each of the layers computing the corresponding output for each layer, i.e., Equation. 
+For l in [1,2,......,L]: Equation
+We compute the prediction p by applying an activation function to the output from the previous layer, i.e., we apply a function to Equation, as shown below.  Equation
+Neural networks minimise the error in the prediction by optimising the loss function with respect to the parameters in the network. In other words, this optimisation is done by adjusting the weights and biases. We will see how this adjustment is done in subsequent sessions. For now, we will concentrate on how to compute the loss. 
+In the case of regression, the most commonly used loss function is MSE/RSS.
+In the case of classification, the most commonly used loss function is Cross Entropy/Log Loss.
+
+The task of training neural networks is similar to that of other ML models such as linear regression and logistic regression. The predicted output (output from the last layer) minus the actual output is the cost (or the loss), and we have to tune the parameters Equation and Equation such that the total cost is minimised.  
+One important point to note here is that we minimise the average of the total loss and not the total loss that you will get to see shortly. Minimising the average loss implies that the total loss is getting minimised.This can be done using any optimisation routine such as gradient descent. 
+
+### Multiclass Classification using Perceptrons
+Until now, you have seen how a perceptron performs binary classification. But if that were the only task a perceptron (or a collection of them) could do, we wouldn’t have cared much about them. It turns out that they can do much more complex things, such as multiclass classification. 
+
+## Back Propagation
+For a neural network, you will learn how the loss function is minimized using the gradient descent function by finding the optimum values of weights and biases using backpropagation.
+Once the gradients of all the weights and biases are computed, the gradient descent update equation can be used to obtain the updated values of the weights and biases.
+
+Forward Pass with updated parameters
+
+Now, let’s perform another forward pass and check if performing backpropagation and updating the weights and biases once has helped in reducing the loss
+
+You can see that the loss function computed on the updated weights and biases is lower than earlier, which is what we want. By repeatedly performing backpropagation to get optimum values of weights and biases, we can continue reducing the loss. This, eventually, will help us obtain the predicted output that is as close as possible to the actual expected output. This is how a neural network learns using backpropagation.
+
+Since this is a simple neural network, you could compute these values manually. But as the number of hidden layers and of neurons per hidden layer increase, computing these values manually will not be possible. The machine will perform these computations. The aim of considering this example is to demonstrate how a basic neural network behaves so that you can extrapolate the ideas learnt in this simple example to larger networks.
+
+We took the following steps when passing an input through the network: 
+1. Forward propagation of the input through the network with random initial values for weights and biases
+2. Making a prediction and computing the overall loss
+3. Updating model parameters using backpropagation i.e., updating the weights and biases in the network, using gradient descent
+4. Forward propagation of the input through the network with updated parameters leading to a decrease in the overall loss 
+
+Repeat the process until the optimum values of weights and biases are obtained such that the model makes acceptable predictions
+
+#### The pseudocode/pseudo-algorithm is given as follows:
+1: Initialise with the input 
+Forward Propagation
+2: For each layer, compute the cumulative input and apply the non-linear activation function on the cumulative input of each neuron of each layer to get the output.
+3: For classification, get the probabilities of the observation belonging to a class, and for regression, compute the numeric output.
+4: Assess the performance of the neural network through a loss function, for example, a cross-entropy loss function for classification and RMSE for regression.
+Backpropagation
+5: From the last layer to the first layer, for each layer, compute the gradient of the loss function with respect to the weights at each layer and all the intermediate gradients.
+6: Once all the gradients of the loss with respect to the weights (and biases) are obtained, use an optimisation technique like gradient descent to update the values of the weights and biases.
+Repeat this process until the model gives acceptable predictions:
+7: Repeat the process for a specified number of iterations or until the predictions made by the model are acceptable. 
+
+Please note that we are using Tensorflow primarily to understand what is happening behind the scenes. You are expected to be comfortable with is the high-level API Keras. In the next session, you will learn about Keras. 
+The platform has all the tools needed to build a solution and deploy it on different platforms. One part of the complete TensorFlow environment is the TensorFlow machine learning library, which will be covered in this session. TensorFlow is a deep learning library developed by Google. It is used widely in the industry for several different applications.
+A tensor is the fundamental data structure used in TensorFlow. It is a multidimensional array with a uniform data type. The data type for an entire tensor is the same. 
+
+So, what impact does this have on the ML process? 
+In the case of data frames, all the raw data, such as integers, strings and floats, can be loaded into a single data frame. So, you could load raw data into a data frame and then process the data to convert it into a numerical form for ML. In the case of tensors, data would need to be loaded into another data structure and processed first. And when you are ready to learn from the data, you can load it into a tensor. 
+
+In most use cases in ML, you will use either 2D or 3D tensors. A 2D tensor is equivalent to a matrix. It can be used to represent a feature matrix, with each column being a feature and each row being a data point. A 2D tensor would suffice most ML needs. You might want to convert a higher-dimension tensor to a 2D tensor for learning tasks. Recall the ML algorithms covered so far in this course; the data sets for all of them were in a matrix form, where each row represented a data point and each column represented a feature. This is how all algorithms are designed to work. 
+## Tensor 
+tensorflow- https://www.tensorflow.org/api_docs/python/tf
+Now, let’s summarise the differences between these two types of tensors:
+The values of constant tensors cannot be changed once they are declared but those of variable tensors can be.
+ Constant tensors need to be initialised with a value while they are being declared, whereas variable tensors can be declared later using operations.
+Differentiation is calculated for variable tensors only, and the gradient operation ignores constants while differentiating. 
+
