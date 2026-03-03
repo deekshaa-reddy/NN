@@ -109,3 +109,24 @@ The values of constant tensors cannot be changed once they are declared but thos
  Constant tensors need to be initialised with a value while they are being declared, whereas variable tensors can be declared later using operations.
 Differentiation is calculated for variable tensors only, and the gradient operation ignores constants while differentiating. 
 
+ You explored how to regularise a neural network using dropouts. You were also introduced to batch normalisation and understood how it helps in training a model. 
+
+#### Regularizing usinh drop outs and Batch normalization
+
+## Module 2:
+The objectives of this session include the following: 
+
+Reshaping and Broadcasting
+Computational Graphs and Gradients
+Minimise Functions
+TensorFlow Architecture 
+TensorFlow Playground
+
+### Reshaping and Broadcasting:
+
+#### Reshaping:
+As the name suggests, reshaping changes the dimension of a tensor. Nevertheless, the reshape function has certain limitations. It can reshape a tensor but cannot remove or add new elements. For instance, consider a tensor of shape (3, 4); it will have 12 elements. The reshape function can change the shape of this tensor to (4, 3) or (6, 2), or even (12, 1), but not (4, 4). In case the shape is changed to (4, 4), you will need 16 elements, but you have only 12; hence, the reshape operation will throw an error.
+
+#### Broadcasting: 
+There is a way you can perform an operation on tensors with mismatching dimensions as well. You can broadcast the elements to more dimensions. For instance, you can use a matrix with shape (1) and multiply it by a matrix of shape (3, 3). Even though the shapes are not compatible, this multiplication is executed because the smaller matrix is repeated over all the elements of the larger matrix. This repetition of one matrix is called broadcasting.
+In PySpark, the broadcast operation includes storing a given data frame in the cache of all the machines in the network. That way all the machines can obtain the data from the broadcasted data frame faster. The PySpark API has a special command for this operation. In TensorFlow, you do not need to write any extra command to specify the matrix that is to be broadcasted. TensorFlow can determine this independently. So, before moving ahead, let’s watch the next video, which shows how broadcasting is implemented. 
