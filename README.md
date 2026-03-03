@@ -130,3 +130,12 @@ As the name suggests, reshaping changes the dimension of a tensor. Nevertheless,
 #### Broadcasting: 
 There is a way you can perform an operation on tensors with mismatching dimensions as well. You can broadcast the elements to more dimensions. For instance, you can use a matrix with shape (1) and multiply it by a matrix of shape (3, 3). Even though the shapes are not compatible, this multiplication is executed because the smaller matrix is repeated over all the elements of the larger matrix. This repetition of one matrix is called broadcasting.
 In PySpark, the broadcast operation includes storing a given data frame in the cache of all the machines in the network. That way all the machines can obtain the data from the broadcasted data frame faster. The PySpark API has a special command for this operation. In TensorFlow, you do not need to write any extra command to specify the matrix that is to be broadcasted. TensorFlow can determine this independently. So, before moving ahead, let’s watch the next video, which shows how broadcasting is implemented. 
+
+### Computational graphs have a few benefits, which include the following:
+
+#### Visualisation: 
+Computational graphs help with visualising algorithms, which in turn makes it easier to develop and maintain complex algorithms. This is especially helpful in the case of neural networks since neural network models are quite complex. 
+#### Gradient calculations:
+An important ability of TensorFlow is to calculate gradients. Computational graphs are used to trace the dependencies of variables on each other. As you saw in the video, a path is traced from a dependent variable to an independent variable first, and then all the intermediate gradients are calculated and used to compute the expected gradient using the chain rule of differentiation.
+#### Distributed architecture:
+Computational graphs also help with distributing the training process on a cluster of machines. In one of the upcoming segments, you will learn how this distributed architecture works exactly.
