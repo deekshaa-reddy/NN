@@ -139,3 +139,9 @@ Computational graphs help with visualising algorithms, which in turn makes it ea
 An important ability of TensorFlow is to calculate gradients. Computational graphs are used to trace the dependencies of variables on each other. As you saw in the video, a path is traced from a dependent variable to an independent variable first, and then all the intermediate gradients are calculated and used to compute the expected gradient using the chain rule of differentiation.
 #### Distributed architecture:
 Computational graphs also help with distributing the training process on a cluster of machines. In one of the upcoming segments, you will learn how this distributed architecture works exactly.
+
+The gradient of any function can be calculated by following these steps: 
+
+1. Initialise the independent variables. The dependent and independent variables need to be tf.Variable-type tensors for the gradient to work.
+2. Create a context of GradientTape() and record the equations that relate to the different variables inside the context.
+3. To find the derivative of an equation that is recorded in the gradient tape context, use .gradient() outside the context and pass in the variable to differentiate and the variable with respect to which the differentiation will occur.
