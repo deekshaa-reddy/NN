@@ -145,3 +145,31 @@ The gradient of any function can be calculated by following these steps:
 1. Initialise the independent variables. The dependent and independent variables need to be tf.Variable-type tensors for the gradient to work.
 2. Create a context of GradientTape() and record the equations that relate to the different variables inside the context.
 3. To find the derivative of an equation that is recorded in the gradient tape context, use .gradient() outside the context and pass in the variable to differentiate and the variable with respect to which the differentiation will occur.
+
+
+
+## Loss Function
+Now, let's look at another issue related to the loss function that you have been using until now. This problem arises specifically involving classification in discrete classes if you used the simple class wise comparison loss that can be given by the following formula:
+Using this formula would not help us in understanding how the output of the neural network change with delta change in the input. Also, since you know that neural networks train using backpropagation, you need a differential loss function and the function given above is not differentiable
+
+Hence, you use a surrogate loss function like the cross-entropy loss for a classification scenario defined as Equation. Though Equations are not discrete values, you use them to find the discrete predicted class. In other words, you have defined a surrogate function that helps us satisfy both conditions:
+The outcomes are discrete values.The loss function is differentiable
+
+## Cross Entropy Loss Function-
+The cross-entropy loss solves the above problem to some extent. It helps in achieving the generalisability of the model with respect to the true loss function. In other words, the cross-entropy loss helps us in the prediction of the points which are outside the training data as it predicts the probability of the data point rather than declaring the point as correctly(0) or incorrectly(1) classified as in the case of the true loss function.
+
+However, overfitting can also happen while using the cross-entropy loss
+The issue of overfitting can be addressed while using the cross-entropy loss using the early stopping criteria. It states that you should stop the training at the point where the validation error starts increasing as you know that the training or the empirical error will keep decreasing as you increase the number of epochs or training 
+
+
+## gradient descent
+### Momentum Based Methods
+Exponential
+ADAgrad
+RMS
+
+### vanishing gradients
+Let us first consider the case of vanishing gradients. You have computed gradients for weights and biases during backpropagation. These gradients usually consist of multiple terms multiplied by each other. Now consider, if all these terms are very small (less than 1), the product of these terms will end up being a very small value.
+
+### exploding gradients
+
